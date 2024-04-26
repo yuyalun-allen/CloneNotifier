@@ -57,14 +57,20 @@ public class CCVoltiController {
 		// カレントディレクトリにしないと正常に動作しない
 		String ccvTool = Paths.get(Def.NOTIFIER_PATH, Def.CCV_DIR, Def.CCV_FILENAME).toString();
 		// Block Clone Detector 新バージョン実行用コマンド
-		String[] cmdArray1 = { "java", "-jar", ccvTool, "-d", project.getNewDir(), "-l", project.getLang(), "-on",
-				Paths.get(workDir, Def.RESULT_TXT).toString(), "--sim", String.valueOf(0.9), "--size",
-				String.valueOf(project.getTokenTh()), "--sizeb", String.valueOf(project.getTokenTh()) };
+		String[] cmdArray1 = { "java", "-Xmx8g", "-jar", ccvTool, 
+		"-d", project.getNewDir(), 
+		"-l", project.getLang(), 
+		"-on", Paths.get(workDir, Def.RESULT_TXT).toString(), "--sim", String.valueOf(0.9), 
+		"--size", String.valueOf(project.getTokenTh()), "--sizeb", String.valueOf(project.getTokenTh()),
+		"-t", "0" };
 
 		// Block Clone Detector 旧バージョン実行用コマンド
-		String[] cmdArray2 = { "java", "-jar", ccvTool, "-d", project.getOldDir(), "-l", project.getLang(), "-on",
-				Paths.get(workDir, Def.RESULT_TXT_OLD).toString(), "--sim", String.valueOf(0.9), "--size",
-				String.valueOf(project.getTokenTh()), "--sizeb", String.valueOf(project.getTokenTh()) };
+		String[] cmdArray2 = { "java", "-Xmx8g", "-jar", ccvTool, 
+		"-d", project.getOldDir(),
+		"-l", project.getLang(), 
+		"-on",	Paths.get(workDir, Def.RESULT_TXT_OLD).toString(), "--sim", String.valueOf(0.9),
+		"--size", String.valueOf(project.getTokenTh()), "--sizeb", String.valueOf(project.getTokenTh()), 
+		"-t", "0"};
 		ProcessBuilder pb1 = new ProcessBuilder(cmdArray1);
 		pb1.directory(new File(workDir));
 		ProcessBuilder pb2 = new ProcessBuilder(cmdArray2);

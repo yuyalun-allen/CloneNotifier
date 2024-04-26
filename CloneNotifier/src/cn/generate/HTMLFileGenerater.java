@@ -302,63 +302,63 @@ public class HTMLFileGenerater {
 		try {
 			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(dir + "\\" + INDEX_PAGE)));
 
-			// ヘッダ部出力
+			// Output the header section
 			outputHtmlHead(writer, project.getName());
 
-			// タイトル出力
+			// Output the title
 			writer.printf("<a href=\"../%s\">%s</a>\r\n", INDEX_PAGE, project.getDate());
-			writer.printf("<h1> プロジェクト名： %s </h1>\r\n", project.getName());
+			writer.printf("<h1> Project Name: %s </h1>\r\n", project.getName());
 			writer.printf("<hr>\r\n");
 			writer.printf("<center>\r\n");
 
-			writer.printf("<h2><a href=\"%s\">クローンセット一覧</a></h2>\r\n", CLONESETLIST_PAGE);
+			writer.printf("<h2><a href=\"%s\">Clone Set List</a></h2>\r\n", CLONESETLIST_PAGE);
 			writer.printf("<hr>\r\n");
-			writer.printf("<h2><a href=\"%s\">ディレクトリ（パッケージ）一覧</a></h2>\r\n", PACKAGELIST_PAGE);
+			writer.printf("<h2><a href=\"%s\">Directory (Package) List</a></h2>\r\n", PACKAGELIST_PAGE);
 			writer.printf("<hr>\r\n");
 
-			// プロジェクト情報の出力
+			// Output project information
 			writer.printf("<table border=\"1\">\r\n");
-			writer.printf("<tr><th bgcolor=\"lightgrey\" colspan=\"2\">プロジェクト情報</th></tr>\r\n");
+			writer.printf("<tr><th bgcolor=\"lightgrey\" colspan=\"2\">Project Information</th></tr>\r\n");
 
-			// ファイル情報出力
-			writer.printf("<tr bgcolor=\"#D1D168\"><th colspan=\"2\">ソースファイル情報</th></tr>\r\n");
-			writer.printf("<tr><th width=\"400\">総ファイル数</th><td width=\"200\">%d</td></tr>\r\n", g.getFileNum());
-			writer.printf("<tr><th width=\"400\">追加ファイル数</th><td width=\"200\">%d</td></tr>\r\n", g.getAddedFileNum());
-			writer.printf("<tr><th width=\"400\">削除ファイル数</th><td width=\"200\">%d</td></tr>\r\n",
+			// Output file information
+			writer.printf("<tr bgcolor=\"#D1D168\"><th colspan=\"2\">Source File Information</th></tr>\r\n");
+			writer.printf("<tr><th width=\"400\">Total Files</th><td width=\"200\">%d</td></tr>\r\n", g.getFileNum());
+			writer.printf("<tr><th width=\"400\">Added Files</th><td width=\"200\">%d</td></tr>\r\n", g.getAddedFileNum());
+			writer.printf("<tr><th width=\"400\">Deleted Files</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getDeletedFileNum());
-			writer.printf("<tr><th width=\"400\">クローンを含むファイル数</th><td width=\"200\">%d</td></tr>\r\n",
+			writer.printf("<tr><th width=\"400\">Files with Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getCloneFileNum());
 
-			// クローンセット情報一覧
-			writer.printf("<tr bgcolor=\"#D1D168\"><th colspan=\"2\">クローンセット分類情報</th></tr>\r\n");
-			writer.printf("<tr><th width=\"400\">総クローンセット数</th><td width=\"200\">%d</td></tr>\r\n", g.getCloneSetNum());
+			// Clone Set Information List
+			writer.printf("<tr bgcolor=\"#D1D168\"><th colspan=\"2\">Clone Set Classification Information</th></tr>\r\n");
+			writer.printf("<tr><th width=\"400\">Total Clone Sets</th><td width=\"200\">%d</td></tr>\r\n", g.getCloneSetNum());
 			writer.printf(
-					"<tr><th width=\"400\"><a href=\"%s#stable\">STABLEクローンセット数</a></th><td width=\"200\">%d</td></tr>\r\n",
+					"<tr><th width=\"400\"><a href=\"%s#stable\">STABLE Clone Sets</a></th><td width=\"200\">%d</td></tr>\r\n",
 					CLONESETLIST_PAGE, g.getStableCloneSetNum());
 			writer.printf(
-					"<tr><th width=\"400\"><a href=\"%s#changed\">CHANGEDクローンセット数</a></th><td width=\"200\">%d</td></tr>\r\n",
+					"<tr><th width=\"400\"><a href=\"%s#changed\">CHANGED Clone Sets</a></th><td width=\"200\">%d</td></tr>\r\n",
 					CLONESETLIST_PAGE, g.getChangedCloneSetNum());
 			writer.printf(
-					"<tr><th width=\"400\"><a href=\"%s#new\">NEWクローンセット数</a></th><td width=\"200\">%d</td></tr>\r\n",
+					"<tr><th width=\"400\"><a href=\"%s#new\">NEW Clone Sets</a></th><td width=\"200\">%d</td></tr>\r\n",
 					CLONESETLIST_PAGE, g.getNewCloneSetNum());
 			writer.printf(
-					"<tr><th width=\"400\"><a href=\"%s#deleted\">DELETEDクローンセット数</a></th><td width=\"200\">%d</td></tr>\r\n",
+					"<tr><th width=\"400\"><a href=\"%s#deleted\">DELETED Clone Sets</a></th><td width=\"200\">%d</td></tr>\r\n",
 					CLONESETLIST_PAGE, g.getDeletedCloneSetNum());
 
-			// クローン情報一覧
-			writer.printf("<tr bgcolor=\"D1D168\"><th colspan=\"2\">コードクローン分類情報</th></tr>\r\n");
-			writer.printf("<tr><th width=\"400\">総コードクローン数</th><td width=\"200\">%d</td></tr>\r\n", g.getCloneNum());
-			writer.printf("<tr><th width=\"400\">STABLEクローン数</th><td width=\"200\">%d</td></tr>\r\n",
+			// Clone Information List
+			writer.printf("<tr bgcolor=\"D1D168\"><th colspan=\"2\">Code Clone Classification Information</th></tr>\r\n");
+			writer.printf("<tr><th width=\"400\">Total Code Clones</th><td width=\"200\">%d</td></tr>\r\n", g.getCloneNum());
+			writer.printf("<tr><th width=\"400\">STABLE Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getStableCloneNum());
-			writer.printf("<tr><th width=\"400\">MODIFIEDクローン数</th><td width=\"200\">%d</td></tr>\r\n",
+			writer.printf("<tr><th width=\"400\">MODIFIED Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getModifiedCloneNum());
-			writer.printf("<tr><th width=\"400\">MOVEDクローン数</th><td width=\"200\">%d</td></tr>\r\n",
+			writer.printf("<tr><th width=\"400\">MOVED Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getMovedCloneNum());
-			writer.printf("<tr><th width=\"400\">ADDEDクローン数</th><td width=\"200\">%d</td></tr>\r\n",
+			writer.printf("<tr><th width=\"400\">ADDED Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getAddedCloneNum());
-			writer.printf("<tr><th width=\"400\">DELETEDクローン数</th><td width=\"200\">%d</td></tr>\r\n",
+			writer.printf("<tr><th width=\"400\">DELETED Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getDeletedCloneNum());
-			writer.printf("<tr><th width=\"400\">DELETEMODIFIEDクローン数</th><td width=\"200\">%d</td></tr>\r\n",
+			writer.printf("<tr><th width=\"400\">DELETEMODIFIED Clones</th><td width=\"200\">%d</td></tr>\r\n",
 					g.getDeleteModifiedCloneNum());
 
 			writer.printf("</table>\n");
@@ -373,6 +373,7 @@ public class HTMLFileGenerater {
 
 		return true;
 	}
+
 
 	/**
 	 * </p>
@@ -395,38 +396,37 @@ public class HTMLFileGenerater {
 		try {
 			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(dir + "\\" + CLONESETLIST_PAGE)));
 
-			// ヘッダ部出力
-			// outputHtmlHead(writer, project.getName()+"-クローンセット一覧");
+			// Output the header section
 			writer.print("<html>\r\n");
-			writer.print("<head>\r\n" + "<title>test-クローンセット一覧</title>\r\n"
+			writer.print("<head>\r\n" + "<title>test-Clone Set List</title>\r\n"
 					+ "<link rel=\"stylesheet\" href=\"../css/datatables.min.css\" type=\"text/css\" media=\"screen\" />\r\n"
 					+ "<script type=\"text/javascript\" src=\"../js/jquery-3.2.1.slim.min.js\"></script> \r\n"
 					+ "<script type=\"text/javascript\" src=\"../js/datatables.min.js\"></script> \r\n"
 					+ "<script type=\"text/javascript\" src=\"../js/script.js\"></script> \r\n" + "</head>\r\n");
 
-			// タイトル出力
+			// Output the title
 			writer.printf("<body>\r\n");
 			writer.printf("<a href=\"../%s\">%s</a>\r\n", INDEX_PAGE, project.getDate());
-			writer.printf("<h1>プロジェクト名：<a href=\"%s\">%s</a></h1>\r\n", INDEX_PAGE, project.getName());
-			writer.printf("<h2>クローンセットリスト</h2>\r\n");
+			writer.printf("<h1>Project Name: <a href=\"%s\">%s</a></h1>\r\n", INDEX_PAGE, project.getName());
+			writer.printf("<h2>Clone Set List</h2>\r\n");
 			writer.printf("<center>\r\n");
 
-			// クローンセットが全く無い場合
+			// If there are no clone sets
 			if (project.getCloneSetList().isEmpty()) {
 				writer.printf("<hr>\r\n");
-				writer.printf("クローンセットは存在しません\r\n ");
+				writer.printf("There are no clone sets.\r\n ");
 			} else {
 				writer.printf("<hr>\r\n");
 				writer.printf("<p>\r\n" + "<div align=\"right\">\r\n"
-						+ "<input type=\"checkbox\" id=\"isDisplayRisk\">Risk 0 を表示しない\r\n" + "</div>\r\n"
+						+ "<input type=\"checkbox\" id=\"isDisplayRisk\">Do not display Risk 0\r\n" + "</div>\r\n"
 						+ "</p>\r\n");
 
-				// クローンセット一覧
+				// Clone set list
 				writer.printf("<table border=\"1\" class=\"display compact\" id=\"myTable\" width=\"1000px\">\r\n");
 				writer.printf("<thead>\r\n");
 				writer.printf("<tr>\r\n");
 				writer.printf("<th bgcolor=\"gainsboro\" class=\"nosort\">ID</th>\r\n");
-				writer.printf("<th >分類</th>\r\n");
+				writer.printf("<th >Category</th>\r\n");
 				writer.printf("<th >RISK</th>\r\n");
 
 				if (project.getTool().equals(Def.CCFX_TOOLNAME)) {
@@ -467,11 +467,11 @@ public class HTMLFileGenerater {
 				writer.printf("<tbody>\r\n");
 				writer.printf("</table>\r\n");
 
-				// 新規クローンセット一覧
+				// New clone set list
 				writer.printf("<hr>\r\n");
 				writer.printf("<h2 id=\"new\">New Clone Set</h2>\r\n");
 				if (g.getNewCloneSetNum() == 0) {
-					writer.printf("New Clone Set は存在しません\r\n ");
+					writer.printf("There are no new clone sets.\r\n ");
 				} else {
 					for (CloneSet cloneSet : project.getCloneSetList()) {
 						if (cloneSet.getCategory() == CloneSet.NEW) {
@@ -480,11 +480,11 @@ public class HTMLFileGenerater {
 					}
 				}
 
-				// 変更クローンセット一覧
+				// Changed clone set list
 				writer.printf("<hr>\r\n");
 				writer.printf("<h2 id=\"changed\">Changed Clone Set</h2>\r\n");
 				if (g.getChangedCloneSetNum() == 0) {
-					writer.printf("Changed Clone Set は存在しません\r\n ");
+					writer.printf("There are no changed clone sets.\r\n ");
 				} else {
 					for (CloneSet cloneSet : project.getCloneSetList()) {
 						if (cloneSet.getCategory() == CloneSet.CHANGED) {
@@ -493,11 +493,11 @@ public class HTMLFileGenerater {
 					}
 				}
 
-				// 除去クローンセット一覧
+				// Deleted clone set list
 				writer.printf("<hr>\r\n");
 				writer.printf("<h2 id=\"deleted\">Deleted Clone Set</h2>\r\n");
 				if (g.getDeletedCloneSetNum() == 0) {
-					writer.printf("Deleted Clone Set  は存在しません\r\n ");
+					writer.printf("There are no deleted clone sets.\r\n ");
 				} else {
 					for (CloneSet cloneSet : project.getCloneSetList()) {
 						if (cloneSet.getCategory() == CloneSet.DELETED) {
@@ -506,11 +506,11 @@ public class HTMLFileGenerater {
 					}
 				}
 
-				// 現状維持クローンセット一覧
+				// Stable clone set list
 				writer.printf("<hr>\r\n");
 				writer.printf("<h2 id=\"stable\">Stable Clone Set</h2>\r\n");
 				if (g.getStableCloneSetNum() == 0) {
-					writer.printf("Stable Clone Setは存在しません\r\n ");
+					writer.printf("There are no stable clone sets.\r\n ");
 				} else {
 					for (CloneSet cloneSet : project.getCloneSetList()) {
 						if (cloneSet.getCategory() == CloneSet.STABLE) {
@@ -546,28 +546,28 @@ public class HTMLFileGenerater {
 	 */
 	private void outputCloneSet(PrintWriter writer, Project project, CloneSet cloneSet) {
 
-		// クローン一覧タグの表示
+		// Displaying the clone set tag
 		writer.printf("<hr>\r\n");
 		writer.printf("<table id=\"cloneset%d\" border=\"1\">\r\n", cloneSet.getOutputId());
 		writer.printf("<tr>\r\n");
-		writer.printf("<th bgcolor=\"%s\" colspan=\"3\">クローンセットID:%d</th>\r\n", getCloneSetColor(cloneSet),
+		writer.printf("<th bgcolor=\"%s\" colspan=\"3\">Clone Set ID: %d</th>\r\n", getCloneSetColor(cloneSet),
 				cloneSet.getOutputId());
-		writer.printf("<th bgcolor=\"%s\" colspan=\"1\">危険度:%f</th>\r\n", getCloneSetColor(cloneSet),
+		writer.printf("<th bgcolor=\"%s\" colspan=\"1\">Risk: %f</th>\r\n", getCloneSetColor(cloneSet),
 				cloneSet.getRisk());
 		writer.printf("</tr>\r\n");
 		writer.printf("<tr bgcolor=\"lightgrey\">\r\n");
 		writer.printf("<th width=\"50\">ID</th>\r\n");
-		writer.printf("<th width=\"100\">分類</th>\r\n");
-		writer.printf("<th width=\"720\">ファイル名</th>\r\n");
-		writer.printf("<th width=\"120\">位置</th>\r\n");
+		writer.printf("<th width=\"100\">Category</th>\r\n");
+		writer.printf("<th width=\"720\">File Name</th>\r\n");
+		writer.printf("<th width=\"120\">Location</th>\r\n");
 
 		if (project.getTool().equals(Def.CD_TOOLNAME)) {
-			writer.printf("<th width=\"200\">メソッド名</th>\r\n");
+			writer.printf("<th width=\"200\">Method Name</th>\r\n");
 		}
 
 		writer.printf("</tr>\r\n");
 
-		// クローン一覧出力
+		// Outputting the clone list
 		for (Clone clone : cloneSet.getNewCloneList()) {
 			writer.printf("<tr bgcolor=\"%s\">\r\n", getCloneColor(clone));
 			writer.printf("<td><a href=\"%s#clone%d.%d\">%d.%d</a></td>\r\n",
@@ -585,17 +585,17 @@ public class HTMLFileGenerater {
 			writer.printf("</tr>\n");
 		}
 
-		// 旧バージョンのクローン
+		// Old version clones
 		for (Clone clone : cloneSet.getOldCloneList()) {
 			if (clone.getCategory() == Clone.DELETED || clone.getCategory() == Clone.DELETE_MODIFIED) {
 				if (clone.getChildClone() != null)
 					continue;
-				writer.printf("<tr><th colspan=\"4\">前バージョンのコードクローン</th></tr>\r\n");
+				writer.printf("<tr><th colspan=\"4\">Clones from Previous Version</th></tr>\r\n");
 				break;
 			}
 		}
 
-		// 元クローン出力
+		// Outputting original clones
 		for (Clone clone : cloneSet.getOldCloneList()) {
 			if (clone.getCategory() == Clone.DELETED || clone.getCategory() == Clone.DELETE_MODIFIED) {
 				if (clone.getChildClone() != null)
@@ -640,19 +640,19 @@ public class HTMLFileGenerater {
 		try {
 			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(dir + "/" + PACKAGELIST_PAGE)));
 
-			// ヘッダ部出力
-			outputHtmlHead(writer, project.getName() + "-ディレクトリ（パッケージ）一覧");
+			// Output the header section
+			outputHtmlHead(writer, project.getName() + "-Directory (Package) List");
 
-			// タイトル出力
+			// Output the title
 			writer.printf("<a href=\"../%s\">%s</a>\r\n", INDEX_PAGE, project.getDate());
-			writer.printf("<h1>プロジェクト名：<a href=\"%s\">%s</a></h1>\r\n", INDEX_PAGE, project.getName());
-			writer.printf("<h2>ディレクトリ（パッケージ）一覧</h2>\r\n");
+			writer.printf("<h1>Project Name: <a href=\"%s\">%s</a></h1>\r\n", INDEX_PAGE, project.getName());
+			writer.printf("<h2>Directory (Package) List</h2>\r\n");
 			writer.printf("<hr>\r\n");
 			writer.printf("<center>\r\n");
 
-			// パッケージ一覧
+			// Package list
 			writer.printf("<table border=\"1\" width=\"500\">\n");
-			writer.printf("<tr><th bgcolor=\"greenyellow\">ディレクトリ（パッケージ）一覧</th></tr>\n");
+			writer.printf("<tr><th bgcolor=\"greenyellow\">Directory (Package) List</th></tr>\n");
 
 			ArrayList<String> packageList = new ArrayList<String>();
 			boolean flag = false;
@@ -667,7 +667,7 @@ public class HTMLFileGenerater {
 				else
 					fileName = (new File(file.getOldPath())).getName();
 
-				// ディレクトリ生成
+				// Directory creation
 				String packageDirPath = dir + "\\" + file.getName();
 				packageDirPath = packageDirPath.replace("\\" + fileName, "");
 				File packageDir = new File(packageDirPath);
@@ -681,9 +681,9 @@ public class HTMLFileGenerater {
 
 			}
 
-			// ファイルが存在しない場合
+			// If no files exist
 			if (!flag) {
-				writer.printf("<tr><td>クローンを含むディレクトリ（パッケージは存在しません）</td></tr>\r\n");
+				writer.printf("<tr><td>No directories (packages) containing clones exist.</td></tr>\r\n");
 			}
 
 			writer.printf("</table>\r\n");
@@ -1069,32 +1069,32 @@ public class HTMLFileGenerater {
 	 */
 	private boolean generateDateListPage(Project project) {
 
-		// index.htmlの削除
+		// Delete index.html
 		File index = new File(project.getGenerateHTMLDir() + "\\" + INDEX_PAGE);
 		if (index.exists()) {
 			index.delete();
 		}
 
-		// indexファイル生成
+		// Generate index file
 		try {
 			PrintWriter writer = new PrintWriter(
 					new BufferedWriter(new FileWriter(project.getGenerateHTMLDir() + "\\" + INDEX_PAGE)));
 			File[] dateList = (new File(project.getGenerateHTMLDir())).listFiles();
 
-			// タイトル出力
-			outputHtmlHead(writer, "コードクローン変更管理システム");
-			writer.println("<h1>コードクローン変更管理システム</h1>");
-			writer.println("<h1>分析プロジェクト：" + project.getName() + "</h1>");
+			// Output the title
+			outputHtmlHead(writer, "Code Clone Change Management System");
+			writer.println("<h1>Code Clone Change Management System</h1>");
+			writer.println("<h1>Analysis Project: " + project.getName() + "</h1>");
 			writer.println("<hr>");
 			writer.println("<center>");
 
-			// 分析日一覧
+			// List of analysis dates
 			writer.println("<table border=\"1\">");
-			writer.println("<tr bgcolor=\"greenyellow\"><th>分析日一覧</th></tr>");
+			writer.println("<tr bgcolor=\"greenyellow\"><th>List of Analysis Dates</th></tr>");
 			for (int i = 0; i < dateList.length; i++) {
 				String date = dateList[i].getName();
 				if (dateList[i].isDirectory() && i < STACK && date.length() == 8) {
-					writer.printf("<tr><td><a href = \"%s\">%c%c%c%c年%c%c月%c%c日</a></td></tr>\n",
+					writer.printf("<tr><td><a href = \"%s\">%c%c%c%cYear%c%cMonth%c%cDay</a></td></tr>\n",
 							date + "/" + INDEX_PAGE, date.charAt(0), date.charAt(1), date.charAt(2), date.charAt(3),
 							date.charAt(4), date.charAt(5), date.charAt(6), date.charAt(7));
 				} else {
@@ -1114,6 +1114,7 @@ public class HTMLFileGenerater {
 		}
 		return true;
 	}
+
 
 	/**
 	 * <p>
@@ -1141,7 +1142,7 @@ public class HTMLFileGenerater {
 
 		File[] files = dir.listFiles();
 
-		// ソースファイルが存在するか判定
+		// Check if source files exist
 		boolean flag = false;
 		for (File file : files) {
 			if (file.getName().equals(dir.getName() + "/" + INDEX_PAGE))
@@ -1162,10 +1163,10 @@ public class HTMLFileGenerater {
 		if (flag) {
 			try {
 				PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(dir + "\\" + INDEX_PAGE)));
-				// ヘッダ部出力
-				outputHtmlHead(writer, project.getName() + "-" + dir.toString().replace(indexDir, "") + "-ソースファイル一覧");
+				// Output the header section
+				outputHtmlHead(writer, project.getName() + "-" + dir.toString().replace(indexDir, "") + "-Source File List");
 
-				// タイトルの出力
+				// Output the title
 				String projectFile = INDEX_PAGE;
 				String projectListFile = "../" + INDEX_PAGE;
 				for (int i = 0; i < node; i++) {
@@ -1174,18 +1175,18 @@ public class HTMLFileGenerater {
 				}
 
 				writer.printf("<a href=\"%s\">%s</a>\r\n", projectListFile, project.getDate());
-				writer.printf("<h1>プロジェクト名：<a href=\"%s\">%s</a></h1>\r\n", projectFile, project.getName());
-				writer.printf("<h2>ディレクトリ（パッケージ）名：%s</h2>\r\n", dir.toString().replace(indexDir, "").substring(1));
+				writer.printf("<h1>Project Name: <a href=\"%s\">%s</a></h1>\r\n", projectFile, project.getName());
+				writer.printf("<h2>Directory (Package) Name: %s</h2>\r\n", dir.toString().replace(indexDir, "").substring(1));
 				writer.printf("<hr>\r\n");
 				writer.printf("<center>\r\n");
 
-				// ソースファイルの出力
+				// Output source files
 				writer.printf("<table width=\"650\" border=\"1\">\r\n");
-				writer.printf("<tr><th bgcolor=\"greenyellow\" colspan=\"3\">クローンを含むソースファイル一覧</th></tr>\r\n");
+				writer.printf("<tr><th bgcolor=\"greenyellow\" colspan=\"3\">Source Files Containing Clones</th></tr>\r\n");
 				writer.printf("<tr bgcolor=\"lightgrey\">\r\n");
-				writer.printf("<th width=\"400\">ファイル名</th>\r\n");
-				writer.printf("<th width=\"100\">クローン数</th>\r\n");
-				writer.printf("<th width=\"150\">備考</th>\r\n");
+				writer.printf("<th width=\"400\">File Name</th>\r\n");
+				writer.printf("<th width=\"100\">Clone Count</th>\r\n");
+				writer.printf("<th width=\"150\">Remarks</th>\r\n");
 				writer.printf("</tr>\r\n");
 
 				for (int i = 0; i < files.length; i++) {
@@ -1392,7 +1393,7 @@ public class HTMLFileGenerater {
 		String projectFile = INDEX_PAGE;
 		String cloneSetFile = CLONESETLIST_PAGE;
 
-		// 階層の計算
+		// Calculate hierarchy
 		String[] tmp = file.getName().split("\\\\");
 		for (int i = 0; i < tmp.length - 1; i++) {
 			projectFile = "../" + projectFile;
@@ -1400,13 +1401,14 @@ public class HTMLFileGenerater {
 			projectListFile = "../" + projectListFile;
 		}
 
-		// タイトル出力
+		// Output the title
 		writer.printf("<a href=\"%s\">%s</a>\r\n", projectListFile, project.getDate());
-		writer.printf("<h1>プロジェクト名：<a href=\"%s\">%s</a></h1>\r\n", projectFile, projectName);
-		writer.printf("<h2>ソースファイル：%s</h2>\r\n", file.getName());
-		writer.printf("<h4><a href=\"%s\">ソースファイル一覧へ戻る</a></h4>\r\n", INDEX_PAGE);
+		writer.printf("<h1>Project Name: <a href=\"%s\">%s</a></h1>\r\n", projectFile, projectName);
+		writer.printf("<h2>Source File: %s</h2>\r\n", file.getName());
+		writer.printf("<h4><a href=\"%s\">Return to Source File List</a></h4>\r\n", INDEX_PAGE);
 		writer.printf("<hr>\r\n");
 
 		return cloneSetFile;
 	}
+
 }

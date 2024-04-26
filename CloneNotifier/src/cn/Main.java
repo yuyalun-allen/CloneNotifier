@@ -43,8 +43,8 @@ public class Main {
 			Logger.writeError(e);
 			System.exit(1);
 		}
-		if (path.endsWith("bin"))
-			path = path.getParent();
+		// if (path.endsWith("bin"))
+		// 	path = path.getParent();
 		Def.NOTIFIER_PATH = path.toString();
 
 		// 引数には複数の設定ファイルを指定できる

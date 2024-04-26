@@ -4,3 +4,8 @@
 *.log
 /**/bin/
 /.metadata/
+
+.venv/
+.vscode/
+result/
+settings
