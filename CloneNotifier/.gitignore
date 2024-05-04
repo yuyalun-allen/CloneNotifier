@@ -10,3 +10,5 @@
 /ccfx/bin/scripts/*.pyc
 /testcase/
 a.ccfxd
+
+server/diff/
